@@ -2,7 +2,7 @@ import { useQueryParameters } from "./useQueryParameters";
 import * as QRCode from "qrcode";
 import "./OpenerPage.scss";
 import { useEffect, useRef } from "react";
-import { URL_BASE_PATH } from "./App";
+import { APP_BASE_PATH } from "./constants";
 
 export function OpenerPage() {
   const { url, title } = useQueryParameters();
@@ -39,7 +39,7 @@ export function OpenerPage() {
         <canvas ref={qrCanvasRef} />
       </div>
       <div>
-        <a href={`/${URL_BASE_PATH}`}>戻る</a> {/*  TODO これenv化できませんか */}
+        <a href={`/${APP_BASE_PATH}`}>戻る</a> {/*  TODO これenv化できませんか */}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import queryString from "query-string";
 import "./HomePage.scss";
-import { URL_BASE_PATH } from "./App";
+import { APP_BASE_PATH } from "./constants";
 
 export function HomePage() {
   const [url, setUrl] = useState<string>("");
@@ -12,7 +12,7 @@ export function HomePage() {
       return;
     }
     const qStrings = queryString.stringify({ url, title });
-    location.href= `http://${window.location.host}/${URL_BASE_PATH}?${qStrings}`
+    location.href= `http://${window.location.host}/${APP_BASE_PATH}?${qStrings}`
   };
 
   return (
