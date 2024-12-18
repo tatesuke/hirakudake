@@ -13,7 +13,7 @@ export function OpenerPage() {
       if (!qrCanvasRef.current) {
         return;
       }
-      await QRCode.toCanvas(qrCanvasRef.current, "hogehoge");
+      await QRCode.toCanvas(qrCanvasRef.current, location.href);
     })();
   }, [qrCanvasRef]);
 
