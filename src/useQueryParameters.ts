@@ -1,13 +1,11 @@
 import queryString from "query-string";
 
 export interface IUseQueryParametersReturn {
-  raw: string;
   url?: string;
   title?: string;
 }
-export function useQueryParameters(
-): IUseQueryParametersReturn {
-  const raw = window.location.search
+export function useQueryParameters(): IUseQueryParametersReturn {
+  const raw = window.location.search;
   const parsed = queryString.parse(raw);
 
   let url: string | undefined = undefined;
@@ -24,7 +22,6 @@ export function useQueryParameters(
     title = parsed["title"]?.[0];
   }
   return {
-    raw,
     url,
     title
   };
