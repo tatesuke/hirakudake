@@ -1,17 +1,46 @@
 import { useQueryParameters } from "./useQueryParameters";
+import * as QRCode from "qrcode";
+import "./OpenerPage.scss";
+import { useEffect, useRef } from "react";
+import { URL_BASE_PATH } from "./App";
 
 export function OpenerPage() {
-  const {url, title} = useQueryParameters();
-  
-  const open = ()=>{
-    window.open(url);
-  }
+  const { url, title } = useQueryParameters();
+  const qrCanvasRef = useRef<HTMLCanvasElement>(null);
 
-  return <div>
-    <button onClick={open}>{title}をひらく</button>
-    <p>{url}</p>
-    <div>
-      <a href="/hirakudake">戻る</a> // TODO これenv化できませんか
+  useEffect(() => {
+    (async () => {
+      if (!qrCanvasRef.current) {
+        return;
+      }
+      await QRCode.toCanvas(qrCanvasRef.current, "hogehoge");
+    })();
+  }, [qrCanvasRef]);
+
+  const open = () => {
+    window.open(url);
+  };
+
+  return (
+    <div className="OpenerPage">
+      <header>
+        <h1>ひらくだけ</h1>
+      </header>
+      <div className="OpenerPage__main-button-area">
+        <button className="OpenerPage__main-button" onClick={open}>
+          {title}
+          <br />
+          を開く
+        </button>
+        <p>{url}</p>
+      </div>
+      <div>
+        <p>このページは以下のQRコードからも開けます</p>
+        <canvas ref={qrCanvasRef} />
+      </div>
+      <div>
+        <a href={`/${URL_BASE_PATH}`}>戻る</a> {/*  TODO これenv化できませんか */}
+      </div>
     </div>
-  </div>
+  );
 }
