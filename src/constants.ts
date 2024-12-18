@@ -1,0 +1,1 @@
+export const APP_BASE_PATH = import.meta.env.VITE_BASE_PATH || "/";

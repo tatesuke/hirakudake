@@ -1,0 +1,33 @@
+.HomePage {
+  width: 100%;
+  min-height: 100dvh;
+  .HomePage__header {
+    padding: 32px;
+
+    h1 {
+      font-size: 32px;
+      margin: 0;
+      text-align: center;
+      color: gray;
+    }
+  }
+
+  .HomePage__leading {
+    padding: 8px;
+  }
+
+  .HomePage__form {
+    padding: 8px;
+  }
+
+  .HomePage__form-field {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .HomePage__form-button {
+    width: 100%;
+  }
+}
