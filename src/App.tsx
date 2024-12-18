@@ -1,20 +1,21 @@
 import "./App.css";
-import { useQueryParameters,  } from "./useQueryParameters";
+import { useQueryParameters } from "./useQueryParameters";
 import { HomePage } from "./HomePage";
 import { OpenerPage } from "./OpenerPage";
+import { APP_BASE_PATH } from "./constants";
 
-function isValid(val: string | undefined) {
-  return (typeof val === "string" && val.trim() !== "");
-}
+// TODO serviceworkerでキャッシュさせてオフラインでも使えるようにしたい
 
 function App() {
-  const {url, title} = useQueryParameters();
-  const hasValidParameters = isValid(url) && isValid(title)
+  const { url, title, error } = useQueryParameters();
 
-  if (!hasValidParameters) {
-    return <HomePage />
+  if (error) {
+    location.href = `/${APP_BASE_PATH}`;
+    return <></>;
+  } else if (url && title) {
+    return <OpenerPage />;
   } else {
-    return <OpenerPage />
+    return <HomePage />;
   }
 }
 

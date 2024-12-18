@@ -18,7 +18,7 @@ export function OpenerPage() {
   }, [qrCanvasRef]);
 
   const open = () => {
-    window.open(url);
+    window.open(url, "noreferrer");
   };
 
   return (
@@ -39,7 +39,7 @@ export function OpenerPage() {
         <canvas ref={qrCanvasRef} />
       </div>
       <div>
-        <a href={`/${APP_BASE_PATH}`}>戻る</a> {/*  TODO これenv化できませんか */}
+        <a href={`/${APP_BASE_PATH}`}>戻る</a>
       </div>
     </div>
   );

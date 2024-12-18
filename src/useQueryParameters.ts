@@ -1,27 +1,51 @@
 import queryString from "query-string";
+import { useEffect, useState } from "react";
 
 export interface IUseQueryParametersReturn {
+  error: boolean;
   url?: string;
   title?: string;
 }
+
 export function useQueryParameters(): IUseQueryParametersReturn {
-  const raw = window.location.search;
-  const parsed = queryString.parse(raw);
+  const [error, setError] = useState<boolean>(false);
+  const [url, setUrl] = useState<string>();
+  const [title, setTitle] = useState<string>();
 
-  let url: string | undefined = undefined;
-  if (typeof parsed["url"] === "string") {
-    url = parsed["url"];
-  } else if (typeof parsed["url"]?.[0] === "string") {
-    url = parsed["url"]?.[0];
-  }
+  useEffect(() => {
+    const parsed = queryString.parse(window.location.search);
+    const length = Object.keys(parsed).length;
+    if (length !== 0 && length !== 2) {
+      // TODO warn出したいね
+      setError(true);
+      return;
+    }
+    if (length == 0) {
+      return;
+    }
 
-  let title: string | undefined = undefined;
-  if (typeof parsed["title"] === "string") {
-    title = parsed["title"];
-  } else if (typeof parsed["title"]?.[0] === "string") {
-    title = parsed["title"]?.[0];
-  }
+    if (typeof parsed["url"] !== "string") {
+      setError(true);
+      return;
+    }
+    if (
+      !parsed["url"].startsWith("http://") &&
+      !parsed["url"].startsWith("https://")
+    ) {
+      setError(true);
+      return;
+    }
+    if (typeof parsed["title"] !== "string") {
+      setError(true);
+      return;
+    }
+
+    setUrl(parsed["url"]);
+    setTitle(parsed["title"]);
+  }, []);
+
   return {
+    error,
     url,
     title
   };
