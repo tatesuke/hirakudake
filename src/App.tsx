@@ -4,7 +4,6 @@ import { HomePage } from "./HomePage";
 import { OpenerPage } from "./OpenerPage";
 import { APP_BASE_PATH } from "./constants";
 
-// TODO serviceworkerでキャッシュさせてオフラインでも使えるようにしたい
 // TODO コードの可読性向上
 // TODO 全体的にデザインなんとかならんのかね
 
