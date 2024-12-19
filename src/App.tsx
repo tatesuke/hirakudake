@@ -6,7 +6,6 @@ import { APP_BASE_PATH } from "./constants";
 
 // TODO windowタイトルも動的に変更したい
 // TODO serviceworkerでキャッシュさせてオフラインでも使えるようにしたい
-// TODO ファビコン作成
 // TODO コードの可読性向上
 // TODO 全体的にデザインなんとかならんのかね
 
