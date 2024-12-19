@@ -32,7 +32,7 @@ export function OpenerPage() {
           <br />
           を開く
         </button>
-        <p>{url}</p>
+        <a href={url} target="_blank">{url}</a>
       </div>
       <div>
         <p>このページは以下のQRコードからも開けます</p>
