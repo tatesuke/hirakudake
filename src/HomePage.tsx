@@ -2,8 +2,11 @@ import { useRef, useState } from "react";
 import queryString from "query-string";
 import "./HomePage.scss";
 import { APP_BASE_PATH } from "./constants";
+import { useDocumentTitle } from "./useDocumentTitle";
 
 export function HomePage() {
+  useDocumentTitle("ひらくだけ");
+  
   const [url, setUrl] = useState<string>("");
   const [title, setTitle] = useState<string>("");
 
