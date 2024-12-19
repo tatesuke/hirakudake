@@ -19,6 +19,7 @@ export function OpenerPage() {
 
   const open = () => {
     window.open(url, "noreferrer");
+    window.close();
   };
 
   return (
