@@ -28,14 +28,19 @@ npm version minor
 ```
 npm version major
 ```
+### debelopをpushする
+
+```
+git push
+```
 
 ### developをmasterにマージする
 githubからPRしてね。
 
-### deployする
+### masterをdeployする
 
 ```
-git checkout develop
+git checkout master
 git pull
 npm install
 npm run lint
