@@ -37,10 +37,10 @@ git push
 ### developをmasterにマージする
 githubからPRしてね。
 
-### masterをdeployする
+### mainをdeployする
 
 ```
-git checkout master
+git checkout main
 git pull
 npm install
 npm run lint
