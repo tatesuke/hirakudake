@@ -3,9 +3,12 @@ import * as QRCode from "qrcode";
 import "./OpenerPage.scss";
 import { useEffect, useRef } from "react";
 import { APP_BASE_PATH } from "./constants";
+import { useDocumentTitle } from "./useDocumentTitle";
 
 export function OpenerPage() {
   const { url, title } = useQueryParameters();
+  useDocumentTitle(`${title}を開く`);
+
   const qrCanvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
