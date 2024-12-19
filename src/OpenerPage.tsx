@@ -3,9 +3,12 @@ import * as QRCode from "qrcode";
 import "./OpenerPage.scss";
 import { useEffect, useRef } from "react";
 import { APP_BASE_PATH } from "./constants";
+import { useDocumentTitle } from "./useDocumentTitle";
 
 export function OpenerPage() {
   const { url, title } = useQueryParameters();
+  useDocumentTitle(`${title}を開く`);
+
   const qrCanvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -19,6 +22,7 @@ export function OpenerPage() {
 
   const open = () => {
     window.open(url, "noreferrer");
+    window.close();
   };
 
   return (
@@ -32,7 +36,7 @@ export function OpenerPage() {
           <br />
           を開く
         </button>
-        <p>{url}</p>
+        <a href={url} target="_blank">{url}</a>
       </div>
       <div>
         <p>このページは以下のQRコードからも開けます</p>
