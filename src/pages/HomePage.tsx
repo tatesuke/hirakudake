@@ -1,60 +1,55 @@
-import { useRef, useState } from "react";
-import queryString from "query-string";
 import "./HomePage.scss";
-import { APP_BASE_PATH } from "./constants";
-import { useDocumentTitle } from "./useDocumentTitle";
 
+/**
+ * ホームページ。
+ * 
+ * アプリタイトルとURLとタイトルを入力するフォームを表示。
+ */
 export function HomePage() {
-  useDocumentTitle("ひらくだけ");
+  document.title = "ひらくだけ";
   
-  const [url, setUrl] = useState<string>("");
-  const [title, setTitle] = useState<string>("");
-
-  const urlInputRef = useRef<HTMLInputElement>(null);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (url.trim() === "" || title.trim() === "") {
-      return;
-    }
-    const qStrings = queryString.stringify({ url, title });
-    location.href = `http://${window.location.host}/${APP_BASE_PATH}?${qStrings}`;
-  };
-
   return (
     <div className="HomePage">
+
+      {/* ヘッダ */}
       <header className="HomePage__header">
         <h1>ひらくだけ</h1>
       </header>
+
+      {/* リードテキスト */}
       <div className="HomePage__leading">
         <p>
           好きなURLを開くボタンを表示するだけのアプリです。登録は必要ありません。
         </p>
       </div>
-      <form className="HomePage__form" onSubmit={handleSubmit}>
+
+      {/* 
+        * フォーム
+        * フォーム内容でgetするだけ。バリデーションは今のところHTML5標準の機能のみでカバーしている。
+        */}
+      <form className="HomePage__form" method="get" action="./">
         <div className="HomePage__form-field">
           <label htmlFor="url">URL</label>
           <input
+            id="url"
             name="url"
             type="url"
-            value={url}
             placeholder="必須"
-            onChange={(e) => setUrl(e.target.value)}
             required={true}
-            ref={urlInputRef}
           />
         </div>
+
         <div className="HomePage__form-field">
           <label htmlFor="title">タイトル</label>
           <input
+            id="title"
             name="title"
             type="text"
-            value={title}
             placeholder="必須"
-            onChange={(e) => setTitle(e.target.value)}
             required={true}
           />
         </div>
+
         <button className="HomePage__form-button --primary" type="submit">
           ひらくだけページ生成
         </button>
