@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import queryString from "query-string";
 import "./HomePage.scss";
-import { APP_BASE_PATH } from "./constants";
-import { useDocumentTitle } from "./useDocumentTitle";
+import { APP_BASE_PATH } from "../constants/constants";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 export function HomePage() {
   useDocumentTitle("ひらくだけ");

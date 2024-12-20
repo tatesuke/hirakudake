@@ -1,9 +1,9 @@
-import { useQueryParameters } from "./useQueryParameters";
 import * as QRCode from "qrcode";
 import "./OpenerPage.scss";
 import { useEffect, useRef } from "react";
-import { APP_BASE_PATH } from "./constants";
-import { useDocumentTitle } from "./useDocumentTitle";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { useQueryParameters } from "../hooks/useQueryParameters";
+import { APP_BASE_PATH } from "../constants/constants";
 
 export function OpenerPage() {
   const { url, title } = useQueryParameters();

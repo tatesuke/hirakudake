@@ -1,8 +1,8 @@
-import "./App.css";
-import { useQueryParameters } from "./useQueryParameters";
-import { HomePage } from "./HomePage";
-import { OpenerPage } from "./OpenerPage";
-import { APP_BASE_PATH } from "./constants";
+import "./App.scss";
+import { APP_BASE_PATH } from "./constants/constants";
+import { useQueryParameters } from "./hooks/useQueryParameters";
+import { HomePage } from "./pages/HomePage";
+import { OpenerPage } from "./pages/OpenerPage";
 
 // TODO コードの可読性向上
 // TODO 全体的にデザインなんとかならんのかね
