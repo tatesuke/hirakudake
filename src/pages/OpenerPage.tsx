@@ -1,8 +1,7 @@
 import "./OpenerPage.scss";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
-import { useQueryParameters } from "../hooks/useQueryParameters";
 import { APP_BASE_PATH } from "../constants/constants";
 import { QrCode } from "../components/QrCode";
+import { parseQueryStrings } from "../utils/parseQueryStrings";
 
 /**
  * 指定されたURLを開くボタンを大きく表示するページ。
@@ -11,8 +10,8 @@ import { QrCode } from "../components/QrCode";
  * クエリストリングの検証は他の場所で行われていることを前提とする。
  */
 export function OpenerPage() {
-  const { url, title } = useQueryParameters();
-  useDocumentTitle(`${title}を開く`);
+  const { url, title } = parseQueryStrings();
+  document.title = `${title}を開く`;
 
   // ボタンが押されたらURLを開いて自分は閉じる
   const onOpenButtonClick = () => {
