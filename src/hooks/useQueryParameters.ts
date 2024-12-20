@@ -16,7 +16,7 @@ export function useQueryParameters(): IUseQueryParametersReturn {
     const parsed = queryString.parse(window.location.search);
     const length = Object.keys(parsed).length;
     if (length !== 0 && length !== 2) {
-      // TODO warn出したいね
+      console.warn("クエリストリングが無いか、2個か以外受け入れていない。")
       setError(true);
       return;
     }
@@ -25,6 +25,7 @@ export function useQueryParameters(): IUseQueryParametersReturn {
     }
 
     if (typeof parsed["url"] !== "string") {
+      console.warn("`url`クエリストリングがない。")
       setError(true);
       return;
     }
@@ -32,10 +33,12 @@ export function useQueryParameters(): IUseQueryParametersReturn {
       !parsed["url"].startsWith("http://") &&
       !parsed["url"].startsWith("https://")
     ) {
+      console.log("`url`クエリストリングがURLでない。")
       setError(true);
       return;
     }
     if (typeof parsed["title"] !== "string") {
+      console.warn("`title`クエリストリングがない。")
       setError(true);
       return;
     }
