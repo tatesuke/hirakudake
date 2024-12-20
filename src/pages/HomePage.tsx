@@ -35,6 +35,7 @@ export function HomePage() {
         <div className="HomePage__form-field">
           <label htmlFor="url">URL</label>
           <input
+            id="url"
             name="url"
             type="url"
             value={url}
@@ -47,6 +48,7 @@ export function HomePage() {
         <div className="HomePage__form-field">
           <label htmlFor="title">タイトル</label>
           <input
+            id="title"
             name="title"
             type="text"
             value={title}
