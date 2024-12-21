@@ -2,15 +2,14 @@ import "./HomePage.scss";
 
 /**
  * ホームページ。
- * 
+ *
  * アプリタイトルとURLとタイトルを入力するフォームを表示。
  */
 export function HomePage() {
   document.title = "ひらくだけ";
-  
+
   return (
     <div className="HomePage">
-
       {/* ヘッダ */}
       <header className="HomePage__header">
         <h1>ひらくだけ</h1>
@@ -21,12 +20,15 @@ export function HomePage() {
         <p>
           好きなURLを開くボタンを表示するだけのアプリです。登録は必要ありません。
         </p>
+        <p>
+          この画面はPCで操作し、次に表示されるボタンの画面はAndroidのChromeで利用することを想定しています。
+        </p>
       </div>
 
-      {/* 
-        * フォーム
-        * フォーム内容でgetするだけ。バリデーションは今のところHTML5標準の機能のみでカバーしている。
-        */}
+      {/*
+       * フォーム
+       * フォーム内容でgetするだけ。バリデーションは今のところHTML5標準の機能のみでカバーしている。
+       */}
       <form className="HomePage__form" method="get" action="./">
         <div className="HomePage__form-field">
           <label htmlFor="url">URL</label>
