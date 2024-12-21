@@ -2,6 +2,10 @@ import "./OpenerPage.scss";
 import { APP_BASE_PATH } from "../constants/constants";
 import { QrCode } from "../components/QrCode";
 import { parseQueryStrings } from "../utils/parseQueryStrings";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
+
+const LOCAL_STORAGE_KEY = "CloseAfterOpen";
 
 /**
  * 指定されたURLを開くボタンを大きく表示するページ。
@@ -11,15 +15,22 @@ import { parseQueryStrings } from "../utils/parseQueryStrings";
  */
 export function OpenerPage() {
   const { url, title } = parseQueryStrings();
-  document.title = `${title}`;
+  useDocumentTitle(`${title}`);
+
+  const [closeAfterOpen, setCloseAfterOpen] = useLocalStorage<boolean>(
+    LOCAL_STORAGE_KEY,
+    false
+  );
 
   // ボタンが押されたらURLを開いて自分は閉じる
   const onOpenButtonClick = () => {
     window.open(url, "_blank", "noopener,noreferrer");
 
-    // スマホでブラウザにページがたまらないように画面を閉じる。
-    // PCでは閉じないが、PC向けでないのでそれで構わない
-    window.close();
+    if (closeAfterOpen) {
+      // スマホでブラウザにページがたまらないように画面を閉じる。
+      // PCでは閉じないが、PC向けでないのでそれで構わない
+      window.close();
+    }
   };
 
   return (
@@ -40,6 +51,17 @@ export function OpenerPage() {
         <a href={url} target="_blank">
           {url}
         </a>
+        <div>
+          <input
+            type="checkbox"
+            id="close-after-open"
+            checked={closeAfterOpen}
+            onChange={(e) => setCloseAfterOpen(e.target.checked)}
+          />
+          <label htmlFor="close-after-open">
+            開いたあとこのタブを閉じる(Android Chromeのみ機能します)
+          </label>
+        </div>
       </div>
 
       {/* QRコード。スマホでもすぐにアクセスできるように */}
