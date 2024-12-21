@@ -1,3 +1,4 @@
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import "./HomePage.scss";
 
 /**
@@ -6,7 +7,7 @@ import "./HomePage.scss";
  * アプリタイトルとURLとタイトルを入力するフォームを表示。
  */
 export function HomePage() {
-  document.title = "ひらくだけ";
+  useDocumentTitle("ひらくだけ");
 
   return (
     <div className="HomePage">

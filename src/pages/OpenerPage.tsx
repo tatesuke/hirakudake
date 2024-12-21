@@ -3,6 +3,7 @@ import { APP_BASE_PATH } from "../constants/constants";
 import { QrCode } from "../components/QrCode";
 import { parseQueryStrings } from "../utils/parseQueryStrings";
 import { useLocalStrage } from "../hooks/useLocalStrage";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 const LOCAL_STRAGE_KEY = "CloseAfterOpen";
 
@@ -14,9 +15,12 @@ const LOCAL_STRAGE_KEY = "CloseAfterOpen";
  */
 export function OpenerPage() {
   const { url, title } = parseQueryStrings();
-  document.title = `${title}`;
+  useDocumentTitle(`${title}`);
 
-  const [closeAfterOpen, setCloseAfterOpen] = useLocalStrage<boolean>(LOCAL_STRAGE_KEY, false);
+  const [closeAfterOpen, setCloseAfterOpen] = useLocalStrage<boolean>(
+    LOCAL_STRAGE_KEY,
+    false
+  );
 
   // ボタンが押されたらURLを開いて自分は閉じる
   const onOpenButtonClick = () => {
