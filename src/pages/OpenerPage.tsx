@@ -11,12 +11,12 @@ import { parseQueryStrings } from "../utils/parseQueryStrings";
  */
 export function OpenerPage() {
   const { url, title } = parseQueryStrings();
-  document.title = `${title}を開く`;
+  document.title = `${title}`;
 
   // ボタンが押されたらURLを開いて自分は閉じる
   const onOpenButtonClick = () => {
     window.open(url, "_blank", "noopener,noreferrer");
-    
+
     // スマホでブラウザにページがたまらないように画面を閉じる。
     // PCでは閉じないが、PC向けでないのでそれで構わない
     window.close();
@@ -44,11 +44,13 @@ export function OpenerPage() {
 
       {/* QRコード。スマホでもすぐにアクセスできるように */}
       <div>
-        <p>このページは以下のQRコードからも開けます</p>
+        <p>
+          このページをAndroidのChromeで表示し(下のQRコードから素早く表示できます。)「ホームに追加」してください。
+        </p>
         <QrCode data={location.href} />
       </div>
 
-    {/* 戻るボタン */}
+      {/* 戻るボタン */}
       <div>
         <a href={`/${APP_BASE_PATH}`}>戻る</a>
       </div>
