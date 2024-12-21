@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 /** ローカルストレージを扱う。 */
-export function useLocalStrage<T>(key: string, initialValue?: T) {
+export function useLocalStorage<T>(key: string, initialValue?: T) {
   const [value, setValue] = useState<T>(() => {
     const savedValue = localStorage.getItem(key);
     return savedValue !== null ? JSON.parse(savedValue) : initialValue;

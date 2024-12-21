@@ -2,10 +2,10 @@ import "./OpenerPage.scss";
 import { APP_BASE_PATH } from "../constants/constants";
 import { QrCode } from "../components/QrCode";
 import { parseQueryStrings } from "../utils/parseQueryStrings";
-import { useLocalStrage } from "../hooks/useLocalStrage";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
-const LOCAL_STRAGE_KEY = "CloseAfterOpen";
+const LOCAL_STORAGE_KEY = "CloseAfterOpen";
 
 /**
  * 指定されたURLを開くボタンを大きく表示するページ。
@@ -17,8 +17,8 @@ export function OpenerPage() {
   const { url, title } = parseQueryStrings();
   useDocumentTitle(`${title}`);
 
-  const [closeAfterOpen, setCloseAfterOpen] = useLocalStrage<boolean>(
-    LOCAL_STRAGE_KEY,
+  const [closeAfterOpen, setCloseAfterOpen] = useLocalStorage<boolean>(
+    LOCAL_STORAGE_KEY,
     false
   );
 
