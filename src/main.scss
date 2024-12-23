@@ -1,25 +1,13 @@
+:root {
+  --size-text-base: 18px;
+}
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-html,
-body {
-  font-family: "Roboto", "Noto Sans", "Helvetica", "Arial", sans-serif;
-  line-height: 1.5;
-  font-size: 16px; /* スマートフォンに適した標準サイズ */
-  color: #2a3e52; /* 柔らかい寒色系のテキストカラー */
-  min-height: 100dvh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-input {
-  padding: 8px 16px;
-}
-
-button {
-  padding: 8px 16px;
+html,body {
+  font-size: var(--size-text-base);
+  min-width: 100dvw;
+  max-height: 100dvh;
 }
