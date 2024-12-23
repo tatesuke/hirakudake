@@ -1,59 +1,63 @@
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import "./HomePage.scss";
 
 /**
  * ホームページ。
- * 
+ *
  * アプリタイトルとURLとタイトルを入力するフォームを表示。
  */
 export function HomePage() {
-  document.title = "ひらくだけ";
-  
+  useDocumentTitle("ひらくだけ");
+
   return (
     <div className="HomePage">
-
-      {/* ヘッダ */}
       <header className="HomePage__header">
-        <h1>ひらくだけ</h1>
+        <h1 className="HomePage__header-heading">ひらくだけ</h1>
       </header>
 
-      {/* リードテキスト */}
-      <div className="HomePage__leading">
-        <p>
-          好きなURLを開くボタンを表示するだけのアプリです。登録は必要ありません。
-        </p>
-      </div>
+      <main>
+        <section className="HomePage__app-info">
+          <p>好きなURLを開くボタンを表示するだけ</p>
+        </section>
 
-      {/* 
-        * フォーム
-        * フォーム内容でgetするだけ。バリデーションは今のところHTML5標準の機能のみでカバーしている。
-        */}
-      <form className="HomePage__form" method="get" action="./">
-        <div className="HomePage__form-field">
-          <label htmlFor="url">URL</label>
-          <input
-            id="url"
-            name="url"
-            type="url"
-            placeholder="必須"
-            required={true}
-          />
-        </div>
+        {/*
+         * フォーム
+         * フォーム内容でgetするだけ。バリデーションは今のところHTML5標準の機能のみでカバーしている。
+         */}
+        <section>
+          <form method="get" action="./">
+            <div className="form-group">
+              <label htmlFor="url">URL(必須)</label>
+              <input
+                id="url"
+                name="url"
+                type="url"
+                placeholder="例: https://youtube.com"
+                required={true}
+              />
+            </div>
 
-        <div className="HomePage__form-field">
-          <label htmlFor="title">タイトル</label>
-          <input
-            id="title"
-            name="title"
-            type="text"
-            placeholder="必須"
-            required={true}
-          />
-        </div>
+            <div className="form-group">
+              <label htmlFor="title">タイトル(必須)</label>
+              <input
+                id="title"
+                name="title"
+                type="text"
+                placeholder="例: YouTube"
+                required={true}
+              />
+            </div>
 
-        <button className="HomePage__form-button --primary" type="submit">
-          ひらくだけページ生成
-        </button>
-      </form>
+            <button type="submit">ひらくだけページ生成</button>
+          </form>
+        </section>
+
+        <section className="HomePage__target-devices">
+          <p>
+            この画面はPCで操作し、次に表示される画面をAndroidのChromeで利用してください。
+          </p>
+        </section>
+      </main>
     </div>
   );
 }

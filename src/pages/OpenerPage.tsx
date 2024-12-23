@@ -2,6 +2,10 @@ import "./OpenerPage.scss";
 import { APP_BASE_PATH } from "../constants/constants";
 import { QrCode } from "../components/QrCode";
 import { parseQueryStrings } from "../utils/parseQueryStrings";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
+
+const LOCAL_STORAGE_KEY = "CloseAfterOpen";
 
 /**
  * 指定されたURLを開くボタンを大きく表示するページ。
@@ -11,44 +15,64 @@ import { parseQueryStrings } from "../utils/parseQueryStrings";
  */
 export function OpenerPage() {
   const { url, title } = parseQueryStrings();
-  document.title = `${title}を開く`;
+  useDocumentTitle(`${title}`);
+
+  const [closeAfterOpen, setCloseAfterOpen] = useLocalStorage<boolean>(
+    LOCAL_STORAGE_KEY,
+    false
+  );
 
   // ボタンが押されたらURLを開いて自分は閉じる
   const onOpenButtonClick = () => {
     window.open(url, "_blank", "noopener,noreferrer");
-    
-    // スマホでブラウザにページがたまらないように画面を閉じる。
-    // PCでは閉じないが、PC向けでないのでそれで構わない
-    window.close();
+
+    if (closeAfterOpen) {
+      // スマホでブラウザにページがたまらないように画面を閉じる。
+      // PCでは閉じないが、PC向けでないのでそれで構わない
+      window.close();
+    }
   };
 
   return (
     <div className="OpenerPage">
       {/* ヘッダ */}
-      <header>
-        <h1>ひらくだけ</h1>
+      <header className="OpenerPage__header">
+        <h1 className="OpenerPage__header-heading">ひらくだけ</h1>
       </header>
+
+      <section className="OpenerPage__lead-text">
+        <p>{title}をひらくだけ</p>
+      </section>
 
       {/* ボタンエリア */}
       <div className="OpenerPage__main-button-area">
         {/* ユーザが探すまでもなく押せるくらい大きいボタン */}
         <button className="OpenerPage__main-button" onClick={onOpenButtonClick}>
-          {title}
-          <br />
-          を開く
+          タップして開く
         </button>
-        <a href={url} target="_blank">
-          {url}
-        </a>
+        <div>
+          <input
+            type="checkbox"
+            id="close-after-open"
+            className="OpenerPage__close-after-open-checkbox"
+            checked={closeAfterOpen}
+            onChange={(e) => setCloseAfterOpen(e.target.checked)}
+          />
+          <label htmlFor="close-after-open">
+            開いたらこのタブを閉じる
+          </label>
+        </div>
       </div>
 
       {/* QRコード。スマホでもすぐにアクセスできるように */}
-      <div>
-        <p>このページは以下のQRコードからも開けます</p>
+      <aside className="OpenerPage__add-home">
+        <p>
+          このページをAndroidのChromeで表示し「ホームに追加」してください。下のQRコードですぐ開けます。
+        </p>
         <QrCode data={location.href} />
-      </div>
+      </aside>
 
-    {/* 戻るボタン */}
+      {/* 戻るボタン */}
       <div>
         <a href={`/${APP_BASE_PATH}`}>戻る</a>
       </div>
