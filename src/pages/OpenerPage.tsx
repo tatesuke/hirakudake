@@ -36,41 +36,41 @@ export function OpenerPage() {
   return (
     <div className="OpenerPage">
       {/* ヘッダ */}
-      <header>
-        <h1>ひらくだけ</h1>
+      <header className="OpenerPage__header">
+        <h1 className="OpenerPage__header-heading">ひらくだけ</h1>
       </header>
+
+      <section className="OpenerPage__lead-text">
+        <p>{title}をひらくだけ</p>
+      </section>
 
       {/* ボタンエリア */}
       <div className="OpenerPage__main-button-area">
         {/* ユーザが探すまでもなく押せるくらい大きいボタン */}
         <button className="OpenerPage__main-button" onClick={onOpenButtonClick}>
-          {title}
-          <br />
-          を開く
+          タップして開く
         </button>
-        <a href={url} target="_blank">
-          {url}
-        </a>
         <div>
           <input
             type="checkbox"
             id="close-after-open"
+            className="OpenerPage__close-after-open-checkbox"
             checked={closeAfterOpen}
             onChange={(e) => setCloseAfterOpen(e.target.checked)}
           />
           <label htmlFor="close-after-open">
-            開いたあとこのタブを閉じる(Android Chromeのみ機能します)
+            開いたらこのタブを閉じる
           </label>
         </div>
       </div>
 
       {/* QRコード。スマホでもすぐにアクセスできるように */}
-      <div>
+      <aside className="OpenerPage__add-home">
         <p>
-          このページをAndroidのChromeで表示し(下のQRコードから素早く表示できます。)「ホームに追加」してください。
+          このページをAndroidのChromeで表示し「ホームに追加」してください。下のQRコードですぐ開けます。
         </p>
         <QrCode data={location.href} />
-      </div>
+      </aside>
 
       {/* 戻るボタン */}
       <div>

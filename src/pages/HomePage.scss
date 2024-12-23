@@ -1,33 +1,36 @@
 .HomePage {
   width: 100%;
   min-height: 100dvh;
-  .HomePage__header {
-    padding: 32px;
 
-    h1 {
-      font-size: 32px;
-      margin: 0;
-      text-align: center;
-      color: gray;
-    }
+  &__header {
+    text-align: center;
+  }
+  &__header-heading {
+    color: var(--color-dark-accent);
   }
 
-  .HomePage__leading {
-    padding: 8px;
+  &__app-info {
+    padding: 0 8px;
+    text-align: center;
+    color: var(--color-dark-accent);
   }
 
-  .HomePage__form {
-    padding: 8px;
+  &__target-devices {
+    padding: 0 8px;
+    font-size: small;
   }
 
-  .HomePage__form-field {
+  form {
     display: flex;
     flex-direction: column;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    gap: 1rem;
+    padding: 0 8px;
   }
 
-  .HomePage__form-button {
-    width: 100%;
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
   }
+
 }

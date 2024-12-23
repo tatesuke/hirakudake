@@ -1,0 +1,28 @@
+:root {
+  --size-text-base: 18px;
+
+  --color-background: #fbf6e9;
+  --color-light-accent: #e3f0af;   // 定義したもの使っていない・・・どうしたものか
+  --color-medium-accent: #5db996;  // 定義したもの使っていない・・・どうしたものか
+  --color-dark-accent: #118b50;
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
+
+body, html {
+  background-color: var(--color-background);
+  font-size: var(--size-text-base);
+  color: var(--color-black);
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+input {
+  padding: 8px;
+}
+
+button {
+  padding: 8px;
+  background-color: var(--color-dark-accent);
+  color: var(--color-white);
+  border: 0;
+}
