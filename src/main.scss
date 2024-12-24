@@ -1,5 +1,6 @@
 :root {
   --size-text-base: 18px;
+  --size-text-base-pc: 16px;
 }
 
 * {
@@ -8,6 +9,22 @@
 
 html,body {
   font-size: var(--size-text-base);
+}
+
+#root-container {
   min-width: 100dvw;
   max-height: 100dvh;
+}
+
+@media (min-width: 768px) {
+  html,body {
+    font-size: var(--size-text-base-pc);
+  }
+  #root-container {
+    min-width: unset;
+    max-width: 768px;
+
+    margin: 0 auto;
+    padding: 16px;
+  }
 }
